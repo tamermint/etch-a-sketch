@@ -2,9 +2,9 @@
 This repo will be primarily used to practice and flex DOM manipulation skills. This is in line with Odin-Project's Etch-A-Sketch assignment and it will be a webpage with 16 * 16 grid of square divs
 
 # Basic methods used
-CSS Flexbox and Grid
-Vanilla Javascipt
-HTML
+- CSS Flexbox and Grid
+- Vanilla Javascipt
+- HTML
 
 # Instructions
  - Click on the new pad link to generate a prompt to ask how many squares per side
