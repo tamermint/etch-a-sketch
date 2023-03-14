@@ -14,3 +14,12 @@ This repo will be primarily used to practice and flex DOM manipulation skills. T
  see really small squares
 
  - Etch your heart out!
+
+ # CSS declarations
+
+ -  <code> link rel="preconnect" href="https://fonts.googleapis.com"
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/post-no-bills-jaffna" rel="stylesheet"> </code>
+
+ - font-family: 'Post No Bills Jaffna SemiBold', 'Kaushan Script', sans-serif;
