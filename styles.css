@@ -1,0 +1,18 @@
+* {
+    font-family: 'Post No Bills Jaffna SemiBold', 'Kaushan Script', sans-serif;
+    background-color: #F2EBAF;
+}
+
+*,
+*::before
+*::after {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
