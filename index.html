@@ -15,8 +15,15 @@
     <div class="header-text">
         <h1>SCRIBBLE YOUR THOUGHTS OR PEN YOUR DREAMS?</h1>
     </div>
-    <div class="grid-container">
-        <span>placeholder text here so that I can visualize grid position</span>
+    <div id="grid-container">
+        <script>
+            let container = document.getElementById('grid-container');
+            for(let i = 1; i <= 256; i++) {
+                let div = document.createElement('div');
+                div.classList.add('one');
+                container.appendChild(div);
+            }
+        </script>
     </div>
     <div class="option-area">
         <span>placeholder text for me to visualize option</span>
