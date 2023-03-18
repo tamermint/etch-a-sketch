@@ -42,3 +42,59 @@ body {
     height: 4.9rem;
     border: 1px solid black;
 }
+
+.option-area {
+    display: flex;
+    width: min(95%, 70rem);
+    height: 7rem;
+    background: linear-gradient(180deg, rgba(34,193,195,0.5) 0%, rgba(255,222,150,1) 50%);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    border-radius: 1000px;
+    box-shadow: -5px 10px 5px 5px rgba(253,187,45,0.5);
+}
+
+#fill-color {
+    display: flex;
+    gap: 1rem;
+    padding: 2rem;
+    background-color: transparent;
+}
+
+#color-box {
+    margin-top: 5px;
+    background-color: transparent;
+    width: 100px;
+    height: 50px;
+  }
+
+#option-area-text {
+    margin-top: 10px;
+    background-color: transparent;
+}
+
+#rainbow {
+    display: flex;
+    gap: 1.5rem;
+    background: transparent;
+}
+
+.rainbow-btn {
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    color: transparent;
+    font-size: 0px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  #rainbow-text {
+    background: transparent;
+    margin-top: 7px;
+  }
+  
