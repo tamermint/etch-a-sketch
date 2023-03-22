@@ -31,11 +31,24 @@
             <span id="option-area-text">PICK YOUR COLOR!</span>
         </div>
         <div id="rainbow">
-            <input type="button" value="RANDOM PICK" class="rainbow-btn">
-            <span id="rainbow-text">RANDOM</span>
+            <input type="button" value="random-pick" class="rainbow-btn">
+            <span id="rainbow-text">RANDOMIZER</span>
         </div>
-        <div id="incremental-grey"></div>
-        <div id="grid-changer"></div>
+        <div id="incremental-grey">
+            <input type="button" value="grey-shader" class="grey-inc">
+            <span id="grey-text">ADD 10% GREY</span>
+        </div>
+        <div id="grid-changer">
+            <input type="range" min="16" max="100" value="16" class="slider">
+            <span id="slider-text">16</span>
+            <script>
+                let slider = document.querySelector('.slider');
+                let sliderValue = document.querySelector('#slider-text')
+                slider.addEventListener('input', function(){
+                    sliderValue.textContent = slider.value;
+                });
+            </script>
+        </div>
     </div>
     <div id="footer-text">
         <span class="contact">CREATED BY tamermint@github</span>
