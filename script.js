@@ -62,27 +62,27 @@ function rgbRandomizer() {
 
 //let's make a function for adding grey to div
 function addGrey(cell) {
-    let bgColor = cell.style.backgroundColor;
-    let rgb;
+    let bgColor = cell.style.backgroundColor;     //get color of cell
+    let rgb;           //to finally set the final rgb value
 
-    if (bgColor === "white" || bgColor === "") {
-        rgb = [255, 255, 255];
+    if (bgColor === "white" || bgColor === "") {       //so that the rgb array is set to white if no color or even if 
+        rgb = [255, 255, 255];                         //the background is white, the array has to be initialized
     } else {
         let leftParenIndex = bgColor.indexOf("(");
         let rightParenIndex = bgColor.indexOf(")");
-        let rgbString = bgColor.slice(leftParenIndex + 1, rightParenIndex);
-        rgb = rgbString.split(",").map(Number)
+        let rgbString = bgColor.slice(leftParenIndex + 1, rightParenIndex);              //slice -> rgb(x , y, z) -> "x, y, z"
+        rgb = rgbString.split(",").map(Number)                                           // "x, y, z" -> [x, y, z]
     }
 
-    let greyDecrementer = 25.5; 
+    let greyDecrementer = 25.5;            //10% of 255
 
-    for(let i = 0; i < 3; i++) {
-        rgb[i] -= greyDecrementer;
-        if(rgb[i] < 0) {
+    for(let i = 0; i < 3; i++) {                    //iterate thrice to go from rgb index 0 to less than 3
+        rgb[i] -= greyDecrementer;                 // whatever value in that index decrease by grey
+        if(rgb[i] < 0) {                           //if lets say, it goes to -ve, set it to 0 again
             rgb[i] = 0;
         }
     }
-    cell.style.backgroundColor = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
+    cell.style.backgroundColor = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;               //cell object passed as reference will retain properties
     
 }
 
