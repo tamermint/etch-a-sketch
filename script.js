@@ -2,21 +2,23 @@ let container = document.getElementById('grid-container');
 for(let i = 1; i <= 400; i++) {
         let div = document.createElement('div');
         div.classList.add('one');
+        div.style.backgroundColor = 'white';
         container.appendChild(div);
     } 
-//The above code is currently commented out so that I can reuse it if needed
 
-//Setting up a function which changes the color of the divs to black when
+let currentDrawingMode = 'black';          // global variable to set drawing mode
+
+//Setting up a function which changes the color of the divs when
 //user clicks and hovers their mouse over the grid
 
-function divColorBlack() {
+function applyColor() {
     const divCell = document.querySelectorAll('.one');
     let mouseDown = false;
 
     divCell.forEach((cell) => {
         cell.addEventListener('mousedown', () => {
             mouseDown = true;
-            cell.style.backgroundColor = 'black';
+            applyColorToCell(cell);
         });
 
         cell.addEventListener('mouseup', () => {
@@ -25,29 +27,21 @@ function divColorBlack() {
 
         cell.addEventListener('mouseover', () => {
             if(mouseDown) {
-                cell.style.backgroundColor = 'black';
+                applyColorToCell(cell);
             }
         });
     });
 }
 
-
-function addWhite() {
-    const divCell = document.querySelectorAll('.one');
-    divCell.forEach((cell) => {
-        cell.style.backgroundColor = 'white';
-    });
+function applyColorToCell(cell) {
+    if(currentDrawingMode === 'black') {
+        cell.style.backgroundColor = 'black';
+    } else if (currentDrawingMode === 'random') {
+        cell.style.backgroundColor = rgbRandomizer();
+    } else if (currentDrawingMode === 'grey') {
+        addGrey(cell);
+    }
 }
-
-//The below function erases the grid back to its original color
-
-function eraseGrid() {
-    const eraser = document.getElementById('eraser-btn')
-    eraser.addEventListener('click', () => {
-        addWhite();
-    });
-}
-
 
 //creating a function that will randomly return an rgb value
 function rgbRandomizer() {
@@ -64,28 +58,47 @@ function rgbRandomizer() {
     return randomRGB;
 }
 
-//function to add the random color to div after user selects randomizer
+//let's make a function for adding grey to div
+function addGrey(cell) {
+    let bgColor = cell.style.backgroundColor;
+    let rgb;
+
+    if (bgColor === "white" || bgColor === "") {
+        rgb = [255, 255, 255];
+    } else {
+        let leftParenIndex = bgColor.indexOf("(");
+        let rightParenIndex = bgColor.indexOf(")");
+        let rgbString = bgColor.slice(leftParenIndex + 1, rightParenIndex);
+        rgb = rgbString.split(",").map(Number)
+    }
+
+    let greyDecrementer = 25.5; 
+
+    for(let i = 0; i < 3; i++) {
+        rgb[i] -= greyDecrementer;
+        if(rgb[i] < 0) {
+            rgb[i] = 0;
+        }
+    }
+    cell.style.backgroundColor = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
+    
+}
+
+function addWhite() {
+    const divCell = document.querySelectorAll('.one');
+    divCell.forEach((cell) => {
+        cell.style.backgroundColor = 'white';
+    });
+}
+
+//function to set the drawing mode to random 
 
 function addRandom() {
-    const divCell = document.querySelectorAll('.one');
-    let mouseDown = false;
+    currentDrawingMode = 'random';
+}
 
-    divCell.forEach((cell) => {
-        cell.addEventListener('mousedown', () => {
-            mouseDown = true;
-            cell.style.backgroundColor = rgbRandomizer();
-        });
-
-        cell.addEventListener('mouseup', () => {
-            mouseDown = false;
-        });
-
-        cell.addEventListener('mouseover', () => {
-            if(mouseDown) {
-                cell.style.backgroundColor = rgbRandomizer();
-            }
-        });
-    });
+function applyGrey() {
+    currentDrawingMode = 'grey';
 }
 
 //Creating a function that will call the addRandom and add 
@@ -97,13 +110,24 @@ function divColorRandomizer(){
     random.addEventListener('click', addRandom);
 }
 
-//let's make a function for adding grey to div
-/* function addGrey() {
-    const divCell = document.querySelectorAll('.one');
-    
-} */
+function greyButton () {
+    const grey = document.querySelector('.grey-inc');
+    grey.addEventListener('click', applyGrey);
+}
 
-eraseGrid();
-divColorBlack();
+//The below function erases the grid back to its original color
+
+function eraseButton() {
+    const eraser = document.getElementById('eraser-btn')
+    eraser.addEventListener('click', () => {
+        addWhite();
+        currentDrawingMode = 'black';
+    });
+}
+
+
+applyColor();
+eraseButton();
 divColorRandomizer();
+greyButton();
 
