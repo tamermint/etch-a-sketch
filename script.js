@@ -34,3 +34,40 @@ for(let i = 1; i <= 400; i++) {
     });
 })();
 
+//creating a function that will randomly return an rgb value
+function rgbRandomizer() {
+    //need to get three values between 0 - 255
+    /* const r = Math.floor(Math.random() * (max - min + 1)) + min;
+    const g = Math.floor(Math.random() * (max - min + 1)) + min;
+    const b = Math.floor(Math.random() * (max - min + 1)) + min; */
+
+    const randomItem = () => {
+        return Math.floor(Math.random() * (255 - 0 + 1)) + 0;
+    }
+        const r = randomItem();
+        const g = randomItem();
+        const b = randomItem();
+
+        const randomRGB = `rgb(${r}, ${g}, ${b})`;
+    
+    return randomRGB;
+}
+
+//function to add the random color to div after selecting randomizer
+
+function addRandom() {
+    const divCell = document.querySelectorAll('.one');
+    divCell.forEach((cell) => {
+        cell.addEventListener('mouseover', () => {
+            cell.style.backgroundColor = rgbRandomizer();
+        })
+    })
+    return divCell;
+}
+
+//Creating a function that will randomly add color to divs
+
+(function divColorRandomizer(){
+    const random = document.querySelector('.rainbow-btn');
+    random.addEventListener('click', addRandom);
+})();
