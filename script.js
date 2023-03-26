@@ -2,7 +2,6 @@ let container = document.getElementById('grid-container');
 for(let i = 1; i <= 400; i++) {
         let div = document.createElement('div');
         div.classList.add('one');
-        div.style.backgroundColor = 'white';
         container.appendChild(div);
     } 
 
@@ -32,6 +31,9 @@ function applyColor() {
         });
     });
 }
+
+//Below function checks the current drawing mode and applies the cell 
+//color 
 
 function applyColorToCell(cell) {
     if(currentDrawingMode === 'black') {
@@ -84,6 +86,8 @@ function addGrey(cell) {
     
 }
 
+//The below function sets the background of cells to white when eraseButton is called
+
 function addWhite() {
     const divCell = document.querySelectorAll('.one');
     divCell.forEach((cell) => {
@@ -109,6 +113,8 @@ function divColorRandomizer(){
     const random = document.querySelector('.rainbow-btn');
     random.addEventListener('click', addRandom);
 }
+
+//The below function will add a click event listener to Add some grey button
 
 function greyButton () {
     const grey = document.querySelector('.grey-inc');
