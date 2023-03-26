@@ -6,7 +6,7 @@ for(let i = 1; i <= 400; i++) {
     } 
 //The above code is currently commented out so that I can reuse it if needed
 
-//Setting up a function which changes the color of the divs when
+//Setting up a function which changes the color of the divs to black when
 //user clicks and hovers their mouse over the grid
 
 function divColorBlack() {
@@ -30,6 +30,7 @@ function divColorBlack() {
         });
     });
 }
+
 
 function addWhite() {
     const divCell = document.querySelectorAll('.one');
@@ -66,13 +67,6 @@ function rgbRandomizer() {
 //function to add the random color to div after user selects randomizer
 
 function addRandom() {
-    /* const divCell = document.querySelectorAll('.one');
-    divCell.forEach((cell) => {
-        cell.addEventListener('mouseover', () => {
-            cell.style.backgroundColor = rgbRandomizer();
-        })
-    })
-    return divCell; */
     const divCell = document.querySelectorAll('.one');
     let mouseDown = false;
 
@@ -94,19 +88,22 @@ function addRandom() {
     });
 }
 
-//Creating a function that will call the addRandom
+//Creating a function that will call the addRandom and add 
+//event listener to the randomizer button which will turn
+//divs into random color only if user clicks and drags over and not just mouseover
 
 function divColorRandomizer(){
     const random = document.querySelector('.rainbow-btn');
     random.addEventListener('click', addRandom);
 }
 
-eraseGrid();
-divColorBlack();
-divColorRandomizer();
-
 //let's make a function for adding grey to div
 /* function addGrey() {
     const divCell = document.querySelectorAll('.one');
     
 } */
+
+eraseGrid();
+divColorBlack();
+divColorRandomizer();
+
