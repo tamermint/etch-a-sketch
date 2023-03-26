@@ -9,38 +9,48 @@ for(let i = 1; i <= 400; i++) {
 //Setting up a function which changes the color of the divs when
 //user clicks and hovers their mouse over the grid
 
-(function divColorChanger() {
-    const gridCell = document.querySelectorAll('.one');
-    const gridColor = document.querySelector('.color-box');
+function divColorBlack() {
+    const divCell = document.querySelectorAll('.one');
+    let mouseDown = false;
 
-    gridCell.forEach((cell) => {
-        cell.addEventListener('mouseover', () => {
+    divCell.forEach((cell) => {
+        cell.addEventListener('mousedown', () => {
+            mouseDown = true;
             cell.style.backgroundColor = 'black';
         });
+
+        cell.addEventListener('mouseup', () => {
+            mouseDown = false;
+        });
+
+        cell.addEventListener('mouseover', () => {
+            if(mouseDown) {
+                cell.style.backgroundColor = 'black';
+            }
+        });
     });
-    return gridCell;
-})();
+}
+
+function addWhite() {
+    const divCell = document.querySelectorAll('.one');
+    divCell.forEach((cell) => {
+        cell.style.backgroundColor = 'white';
+    });
+}
 
 //The below function erases the grid back to its original color
 
-(function eraseGrid() {
+function eraseGrid() {
     const eraser = document.getElementById('eraser-btn')
-    const gridCell = document.querySelectorAll('.one');
-
     eraser.addEventListener('click', () => {
-        gridCell.forEach((cell) => {
-            cell.style.backgroundColor = 'white';
-        });
+        addWhite();
     });
-})();
+}
+
 
 //creating a function that will randomly return an rgb value
 function rgbRandomizer() {
     //need to get three values between 0 - 255
-    /* const r = Math.floor(Math.random() * (max - min + 1)) + min;
-    const g = Math.floor(Math.random() * (max - min + 1)) + min;
-    const b = Math.floor(Math.random() * (max - min + 1)) + min; */
-
     const randomItem = () => {
         return Math.floor(Math.random() * (255 - 0 + 1)) + 0;
     }
@@ -53,21 +63,50 @@ function rgbRandomizer() {
     return randomRGB;
 }
 
-//function to add the random color to div after selecting randomizer
+//function to add the random color to div after user selects randomizer
 
 function addRandom() {
-    const divCell = document.querySelectorAll('.one');
+    /* const divCell = document.querySelectorAll('.one');
     divCell.forEach((cell) => {
         cell.addEventListener('mouseover', () => {
             cell.style.backgroundColor = rgbRandomizer();
         })
     })
-    return divCell;
+    return divCell; */
+    const divCell = document.querySelectorAll('.one');
+    let mouseDown = false;
+
+    divCell.forEach((cell) => {
+        cell.addEventListener('mousedown', () => {
+            mouseDown = true;
+            cell.style.backgroundColor = rgbRandomizer();
+        });
+
+        cell.addEventListener('mouseup', () => {
+            mouseDown = false;
+        });
+
+        cell.addEventListener('mouseover', () => {
+            if(mouseDown) {
+                cell.style.backgroundColor = rgbRandomizer();
+            }
+        });
+    });
 }
 
-//Creating a function that will randomly add color to divs
+//Creating a function that will call the addRandom
 
-(function divColorRandomizer(){
+function divColorRandomizer(){
     const random = document.querySelector('.rainbow-btn');
     random.addEventListener('click', addRandom);
-})();
+}
+
+eraseGrid();
+divColorBlack();
+divColorRandomizer();
+
+//let's make a function for adding grey to div
+/* function addGrey() {
+    const divCell = document.querySelectorAll('.one');
+    
+} */
