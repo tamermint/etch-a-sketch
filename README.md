@@ -7,11 +7,17 @@ This repo will be primarily used to practice and flex DOM manipulation skills. T
 - HTML
 
 # Instructions
- - Click on the new pad link to generate a prompt to ask how many squares per side
- you would like
+ - Use the slider to generate a grid i.e. for 16 you will get 16 * 16, for 20 you will get 20 * 20 grid etc.
 
- - Condition : the total space for the pad doesn't change so if you want 100/side, you will
- see really small squares
+ - Condition : the total space for the pad doesn't change so if you want 60/side(60 is the maximum :), you will see really small squares
+
+ - Pick ypu color - lets you pick the color from the palette
+
+ - Randomizer - puts random color in the grid 
+
+ - Add Some Grey - will keep adding gray to cells and after 10 mouse drags the cells will be totally black
+
+ - Erase - to erase the grid
 
  - Etch your heart out!
 
