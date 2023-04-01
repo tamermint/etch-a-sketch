@@ -1,11 +1,32 @@
-let container = document.getElementById('grid-container');
-for(let i = 1; i <= 400; i++) {
-        let div = document.createElement('div');
-        div.classList.add('one');
-        container.appendChild(div);
-    } 
+function gridListener() {
+    let gridCount = document.querySelector('.slider');
+    let applyGridCount = gridCount.value;
+    gridCount.addEventListener('input', () => {
+        applyGridCount = gridCount.value;
+        let container = document.getElementById('grid-container');
+
+        //clear the container first 
+        container.innerHTML = '';
+
+        //update the grid templates based on the new columns and rows
+        container.style.gridTemplateRows = `repeat(${applyGridCount}, 1fr)`;
+        container.style.gridTemplateColumns = `repeat(${applyGridCount}, 1fr)`;
+
+        //calculate total cells based on the slider value;
+        let totalCells = applyGridCount * applyGridCount;
+
+        for(let i = 1; i <= totalCells; i++) {
+            let div = document.createElement('div');
+            div.classList.add('one');
+            container.appendChild(div);
+        }
+        //reapply color listeners for the new grid;
+        applyColor();
+    });
+} 
 
 let currentDrawingMode = 'black';          // global variable to set drawing mode
+let customColor = '';                      // global variable to set the custom color
 
 //Setting up a function which changes the color of the divs when
 //user clicks and hovers their mouse over the grid
@@ -42,6 +63,8 @@ function applyColorToCell(cell) {
         cell.style.backgroundColor = rgbRandomizer();
     } else if (currentDrawingMode === 'grey') {
         addGrey(cell);
+    } else if (currentDrawingMode === 'custom') {
+        cell.style.backgroundColor = customColor;
     }
 }
 
@@ -101,6 +124,8 @@ function addRandom() {
     currentDrawingMode = 'random';
 }
 
+//function to set drawing mode to grey
+
 function applyGrey() {
     currentDrawingMode = 'grey';
 }
@@ -121,6 +146,14 @@ function greyButton () {
     grey.addEventListener('click', applyGrey);
 }
 
+function customColorButton() {
+    const customColorBox = document.querySelector('#color-box');
+    customColorBox.addEventListener('input', () => {
+        customColor = customColorBox.value;
+        currentDrawingMode = 'custom';
+    })
+}
+
 //The below function erases the grid back to its original color
 
 function eraseButton() {
@@ -131,7 +164,8 @@ function eraseButton() {
     });
 }
 
-
+gridListener();
+customColorButton();
 applyColor();
 eraseButton();
 divColorRandomizer();

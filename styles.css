@@ -49,7 +49,7 @@ height and width*/
 
 .one {
     background-color: white;
-    box-shadow: 0 0 0.5px 0.5px black;
+    box-shadow: 0 0 0.1px 0.1px black;
 }
 
 /*The only problem with the below - which I wasn't able to solve is
@@ -59,7 +59,7 @@ other students have got around this by using display:flex and flex-direction:col
 
 .option-area {
     display: flex;
-    width: max(90%, 95rem); /*This line ensures that tye contents don't squish when window is minimized*/
+    width: max(90%, 95rem); /*This line ensures that the contents don't squish when window is minimized*/
     height: 7rem;
     background: linear-gradient(180deg, rgba(34,193,195,0.5) 0%, rgba(255,222,150,1) 50%);
     margin-top: 2rem;
