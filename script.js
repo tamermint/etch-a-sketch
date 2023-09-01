@@ -1,27 +1,29 @@
-function gridListener() {
+function setupGrid(applyGridCount) {
+    let container = document.getElementById('grid-container');
+
+    //clearing the container first
+    container.innerHTML = '';
+
+    //update the grid templates based on the new columns and rows
+    container.style.gridTemplateRows = `repeat(${applyGridCount}, 1fr)`;
+    container.style.gridTemplateColumns = `repeat(${applyGridCount}, 1fr)`;
+
+     //calculate total cells based on the slider value;
+     let totalCells = applyGridCount * applyGridCount;
+
+     for(let i = 1; i <= totalCells; i++) {
+        let div = document.createElement('div');
+        div.classList.add('one');
+        container.appendChild(div);
+    }
+    //reapply color listeners for the new grid;
+    applyColor();
+}
+
+function gridListener() {                    //some refactoring done to ensure the default value of 16 is accepted when page loads
     let gridCount = document.querySelector('.slider');
-    let applyGridCount = gridCount.value;
     gridCount.addEventListener('input', () => {
-        applyGridCount = gridCount.value;
-        let container = document.getElementById('grid-container');
-
-        //clear the container first 
-        container.innerHTML = '';
-
-        //update the grid templates based on the new columns and rows
-        container.style.gridTemplateRows = `repeat(${applyGridCount}, 1fr)`;
-        container.style.gridTemplateColumns = `repeat(${applyGridCount}, 1fr)`;
-
-        //calculate total cells based on the slider value;
-        let totalCells = applyGridCount * applyGridCount;
-
-        for(let i = 1; i <= totalCells; i++) {
-            let div = document.createElement('div');
-            div.classList.add('one');
-            container.appendChild(div);
-        }
-        //reapply color listeners for the new grid;
-        applyColor();
+        setupGrid(gridCount.value);
     });
 } 
 
@@ -164,6 +166,7 @@ function eraseButton() {
     });
 }
 
+setupGrid(16);
 gridListener();
 customColorButton();
 applyColor();
